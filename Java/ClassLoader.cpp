@@ -7,3 +7,20 @@
 //
 
 #include "ClassLoader.hpp"
+
+using namespace java::lang;
+
+ClassLoader::ClassLoader(JVM* jvm) : Object()
+{
+    
+}
+
+ClassLoader::ClassLoader(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+ClassLoader::~ClassLoader()
+{
+    
+}

@@ -24,6 +24,7 @@ namespace java
         using java::lang::reflect::Type;
         using java::security::ProtectionDomain;
         using java::net::URL;
+        using java::io::InputStream;
         
         class Class final : public Object
         {

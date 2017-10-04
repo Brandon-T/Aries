@@ -20,6 +20,7 @@ namespace java
         public:
             Package(JVM* jvm);
             Package(JVM* jvm, jobject instance);
+            virtual ~Package();
         };
     }
 }

@@ -7,3 +7,20 @@
 //
 
 #include "Package.hpp"
+
+using namespace java::lang;
+
+Package::Package(JVM* jvm) : Object()
+{
+    
+}
+
+Package::Package(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+Package::~Package()
+{
+    
+}

@@ -20,6 +20,7 @@ namespace java
         public:
             ClassLoader(JVM* jvm);
             ClassLoader(JVM* jvm, jobject instance);
+            virtual ~ClassLoader();
         };
     }
 }

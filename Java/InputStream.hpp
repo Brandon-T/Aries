@@ -20,20 +20,20 @@ namespace java
         class InputStream : public Object
         {
         public:
+            InputStream(JVM* jvm, jobject instance);
             virtual ~InputStream();
             
             virtual int	available();
             virtual void close();
             virtual void mark(int readAheadLimit);
             virtual bool markSupported();
-            virtual int	read() = 0;
+            virtual int	read();
             virtual int	read(jbyte* buffer, int off, int len);
             virtual void reset();
             virtual long skip(long n);
             
         protected:
             InputStream(JVM* jvm);
-            InputStream(JVM* jvm, jobject instance);
         };
     }
 }

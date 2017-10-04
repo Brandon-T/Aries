@@ -25,6 +25,7 @@ namespace java
             public:
                 Type(JVM* jvm);
                 Type(JVM* jvm, jobject instance);
+                virtual ~Type();
             };
         }
     }

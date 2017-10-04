@@ -25,6 +25,7 @@ namespace java
             public:
                 Constructor(JVM* jvm);
                 Constructor(JVM* jvm, jobject instance);
+                virtual ~Constructor();
             };
         }
     }

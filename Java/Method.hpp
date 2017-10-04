@@ -25,6 +25,7 @@ namespace java
             public:
                 Method(JVM* jvm);
                 Method(JVM* jvm, jobject instance);
+                virtual ~Method();
             };
         }
     }

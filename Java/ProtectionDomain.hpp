@@ -25,6 +25,7 @@ namespace java
         public:
             ProtectionDomain(JVM* jvm);
             ProtectionDomain(JVM* jvm, jobject instance);
+            virtual ~ProtectionDomain();
         };
     }
 }

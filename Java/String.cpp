@@ -7,3 +7,20 @@
 //
 
 #include "String.hpp"
+
+using namespace java::lang;
+
+String::String(JVM* jvm) : Object()
+{
+    
+}
+
+String::String(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+String::~String()
+{
+    
+}

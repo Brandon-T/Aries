@@ -7,3 +7,20 @@
 //
 
 #include "Type.hpp"
+
+using namespace java::lang::reflect;
+
+Type::Type(JVM* jvm) : Object()
+{
+    
+}
+
+Type::Type(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+Type::~Type()
+{
+    
+}

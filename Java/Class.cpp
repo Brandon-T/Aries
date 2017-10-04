@@ -15,10 +15,16 @@
 #include "Method.hpp"
 #include "Type.hpp"
 #include "Package.hpp"
+#include "ProtectionDomain.hpp"
+#include "URL.hpp"
+#include "InputStream.hpp"
 
 using namespace java::lang;
 using namespace java::lang::annotation;
 using namespace java::lang::reflect;
+using namespace java::security;
+using namespace java::net;
+using namespace java::io;
 
 Class::Class() : Object()
 {
@@ -267,4 +273,22 @@ Package Class::getPackage()
 {
     jmethodID getPackageMethod = this->vm->GetMethodID(this->cls, "getPackage", "()Ljava/lang/Package;");
     return Package(this->vm, this->vm->CallObjectMethod(this->cls, getPackageMethod));
+}
+
+ProtectionDomain Class::getProtectionDomain()
+{
+    jmethodID getProtectionDomainMethod = this->vm->GetMethodID(this->cls, "getProtectionDomain", "()Ljava/security/ProtectionDomain;");
+    return ProtectionDomain(this->vm, this->vm->CallObjectMethod(this->cls, getProtectionDomainMethod));
+}
+
+URL Class::getResource(String name)
+{
+    jmethodID getResourceMethod = this->vm->GetMethodID(this->cls, "getResource", "(Ljava/lang/String;)Ljava/net/URL;");
+    return URL(this->vm, this->vm->CallObjectMethod(this->cls, getResourceMethod, name.ref().get()));
+}
+
+InputStream Class::getResourceAsStream(String name)
+{
+    jmethodID getResourceAsStreamMethod = this->vm->GetMethodID(this->cls, "getResourceAsStreamMethod", "(Ljava/lang/String;)Ljava/io/InputStream;");
+    return InputStream(this->vm, this->vm->CallObjectMethod(this->cls, getResourceAsStreamMethod, name.ref().get()));
 }

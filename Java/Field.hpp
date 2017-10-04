@@ -25,6 +25,7 @@ namespace java
             public:
                 Field(JVM* jvm);
                 Field(JVM* jvm, jobject instance);
+                virtual ~Field();
             };
         }
     }

@@ -7,3 +7,20 @@
 //
 
 #include "Annotation.hpp"
+
+using namespace java::lang::annotation;
+
+Annotation::Annotation(JVM* jvm) : Object()
+{
+    
+}
+
+Annotation::Annotation(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+Annotation::~Annotation()
+{
+    
+}

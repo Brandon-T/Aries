@@ -7,3 +7,20 @@
 //
 
 #include "Constructor.hpp"
+
+using namespace java::lang::reflect;
+
+Constructor::Constructor(JVM* jvm) : Object()
+{
+    
+}
+
+Constructor::Constructor(JVM* jvm, jobject instance) : Object(jvm, instance)
+{
+    
+}
+
+Constructor::~Constructor()
+{
+    
+}

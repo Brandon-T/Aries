@@ -21,7 +21,9 @@ namespace java
             using Object::Object;
             
         public:
+            String(JVM* jvm);
             String(JVM* jvm, jobject instance);
+            virtual ~String();
         };
     }
 }

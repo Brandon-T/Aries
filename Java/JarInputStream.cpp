@@ -7,6 +7,8 @@
 //
 
 #include "JarInputStream.hpp"
+#include "ZipEntry.hpp"
+#include "JarEntry.hpp"
 
 using namespace java::lang;
 using namespace java::util::zip;
@@ -20,7 +22,7 @@ JarInputStream::JarInputStream(JVM* jvm, InputStream stream) : InputStream(nullp
     this->inst = this->vm->NewGlobalRef(this->vm->NewObject(this->cls, constructor, stream.ref().get()));
 }
 
-JarInputStream::JarInputStream(JVM* jvm, InputStream stream, bool verify)
+JarInputStream::JarInputStream(JVM* jvm, InputStream stream, bool verify) : InputStream(nullptr)
 {
     this->vm = jvm;
     this->cls = this->vm->FindClass("Ljava/util/jar/JarInputStream;");
@@ -37,12 +39,12 @@ ZipEntry* JarInputStream::getNextEntry()
 {
     jmethodID method = this->vm->GetMethodID(this->cls, "getNextEntry", "()Ljava/util/zip/ZipEntry;");
     jobject localInstance = this->vm->CallObjectMethod(this->inst, method);
-    return localInstance ? new ZipEntry(this->vm, nullptr, localInstance) : nullptr;
+    return localInstance ? new ZipEntry(this->vm, localInstance) : nullptr;
 }
 
 JarEntry* JarInputStream::getNextJarEntry()
 {
     jmethodID method = this->vm->GetMethodID(this->cls, "getNextJarEntry", "()Ljava/util/jar/JarEntry;");
     jobject localInstance = this->vm->CallObjectMethod(this->inst, method);
-    return localInstance ? new JarEntry(this->vm, nullptr, localInstance) : nullptr;
+    return localInstance ? new JarEntry(this->vm, localInstance) : nullptr;
 }

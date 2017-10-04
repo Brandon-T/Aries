@@ -25,6 +25,7 @@ namespace java
             public:
                 Annotation(JVM* jvm);
                 Annotation(JVM* jvm, jobject instance);
+                virtual ~Annotation();
             };
         }
     }
