@@ -83,7 +83,7 @@ std::vector<Annotation> Class::getAnnotations()
 {
     jmethodID getAnnotationsMethod = this->vm->GetMethodID(this->cls, "getAnnotations", "()Ljava/lang/annotation/Annotation;");
     jobjectArray annotations = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getAnnotationsMethod));
-    return JVMObjectArrayToVector<Annotation>(this->vm, annotations);
+    return JVMArrayToVector<Annotation>(this->vm, annotations);
 }
 
 String Class::getCanonicalName()
@@ -96,7 +96,7 @@ std::vector<Class> Class::getClasses()
 {
     jmethodID getClassesMethod = this->vm->GetMethodID(this->cls, "getClasses", "()Ljava/lang/Class;");
     jobjectArray classes = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getClassesMethod));
-    return JVMObjectArrayToVector<Class>(this->vm, classes);
+    return JVMArrayToVector<Class>(this->vm, classes);
 }
 
 ClassLoader Class::getClassLoader()
@@ -122,21 +122,21 @@ std::vector<Constructor> Class::getConstructors()
 {
     jmethodID getConstructorsMethod = this->vm->GetMethodID(this->cls, "getConstructors", "()[Ljava/lang/reflect/Constructor;");
     jobjectArray constructors = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getConstructorsMethod));
-    return JVMObjectArrayToVector<Constructor>(this->vm, constructors);
+    return JVMArrayToVector<Constructor>(this->vm, constructors);
 }
 
 std::vector<Annotation> Class::getDeclaredAnnotations()
 {
     jmethodID getDeclaredAnnotationsMethod = this->vm->GetMethodID(this->cls, "getDeclaredAnnotations", "()[Ljava/lang/annotation/Annotation;");
     jobjectArray annotations = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getDeclaredAnnotationsMethod));
-    return JVMObjectArrayToVector<Annotation>(this->vm, annotations);
+    return JVMArrayToVector<Annotation>(this->vm, annotations);
 }
 
 std::vector<Class> Class::getDeclaredClasses()
 {
     jmethodID getDeclaredClassesMethod = this->vm->GetMethodID(this->cls, "getDeclaredClasses", "()[Ljava/lang/Class;");
     jobjectArray classes = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getDeclaredClassesMethod));
-    return JVMObjectArrayToVector<Class>(this->vm, classes);
+    return JVMArrayToVector<Class>(this->vm, classes);
 }
 
 Constructor Class::getDeclaredConstructor(std::vector<Class> parameterTypes)
@@ -150,7 +150,7 @@ std::vector<Constructor> Class::getDeclaredConstructors()
 {
     jmethodID getDeclaredConstructorsMethod = this->vm->GetMethodID(this->cls, "getDeclaredConstructors", "()[Ljava/lang/reflect/Constructor;");
     jobjectArray constructors = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getDeclaredConstructorsMethod));
-    return JVMObjectArrayToVector<Constructor>(this->vm, constructors);
+    return JVMArrayToVector<Constructor>(this->vm, constructors);
 }
 
 Field Class::getDeclaredField(String name)
@@ -163,7 +163,7 @@ std::vector<Field> Class::getDeclaredFields()
 {
     jmethodID getDeclaredFieldsMethod = this->vm->GetMethodID(this->cls, "getDeclaredFields", "()[Ljava/lang/reflect/Field;");
     jobjectArray fields = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getDeclaredFieldsMethod));
-    return JVMObjectArrayToVector<Field>(this->vm, fields);
+    return JVMArrayToVector<Field>(this->vm, fields);
 }
 
 Method Class::getDeclaredMethod(String name, std::vector<Class> parameterTypes)
@@ -177,7 +177,7 @@ std::vector<Method> Class::getDeclaredMethods()
 {
     jmethodID getDeclaredMethodsMethod = this->vm->GetMethodID(this->cls, "getDeclaredMethods", "()[Ljava/lang/reflect/Method;");
     jobjectArray methods = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getDeclaredMethodsMethod));
-    return JVMObjectArrayToVector<Method>(this->vm, methods);
+    return JVMArrayToVector<Method>(this->vm, methods);
 }
 
 Class Class::getDeclaringClass()
@@ -208,7 +208,7 @@ std::vector<Class> Class::getEnumConstants()
 {
     jmethodID getEnumConstantsMethod = this->vm->GetMethodID(this->cls, "getEnumConstants", "()[Ljava/lang/Object;");
     jobjectArray constants = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getEnumConstantsMethod));
-    return JVMObjectArrayToVector<Class>(this->vm, constants);
+    return JVMArrayToVector<Class>(this->vm, constants);
 }
 
 Field Class::getField(String name)
@@ -221,14 +221,14 @@ std::vector<Field> Class::getFields()
 {
     jmethodID getFieldsMethod = this->vm->GetMethodID(this->cls, "getFields", "()[Ljava/lang/reflect/Field;");
     jobjectArray fields = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getFieldsMethod));
-    return JVMObjectArrayToVector<Field>(this->vm, fields);
+    return JVMArrayToVector<Field>(this->vm, fields);
 }
 
 std::vector<Type> Class::getGenericInterfaces()
 {
     jmethodID getGenericInterfacesMethod = this->vm->GetMethodID(this->cls, "getGenericInterfaces", "()[Ljava/lang/reflect/Type;");
     jobjectArray interfaces = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getGenericInterfacesMethod));
-    return JVMObjectArrayToVector<Type>(this->vm, interfaces);
+    return JVMArrayToVector<Type>(this->vm, interfaces);
 }
 
 Type Class::getGenericSuperclass()
@@ -241,7 +241,7 @@ std::vector<Class> Class::getInterfaces()
 {
     jmethodID getInterfacesMethod = this->vm->GetMethodID(this->cls, "getInterfaces", "()[Ljava/lang/reflect/Class;");
     jobjectArray interfaces = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getInterfacesMethod));
-    return JVMObjectArrayToVector<Class>(this->vm, interfaces);
+    return JVMArrayToVector<Class>(this->vm, interfaces);
 }
 
 Method Class::getMethod(String name, std::vector<Class> parameterTypes)
@@ -254,7 +254,7 @@ std::vector<Method> Class::getMethods()
 {
     jmethodID getMethodsMethod = this->vm->GetMethodID(this->cls, "getMethods", "()[Ljava/lang/reflect/Method;");
     jobjectArray methods = static_cast<jobjectArray>(this->vm->CallObjectMethod(this->inst, getMethodsMethod));
-    return JVMObjectArrayToVector<Method>(this->vm, methods);
+    return JVMArrayToVector<Method>(this->vm, methods);
 }
 
 int Class::getModifiers()

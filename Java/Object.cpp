@@ -48,14 +48,19 @@ Object::Object(Object &&other) : vm(other.vm), cls(other.cls), inst(other.inst)
 
 Object::~Object()
 {
-    if (this->cls && this->vm && this->inst)
+    if (this->vm && this->inst)
     {
         this->vm->DeleteGlobalRef(this->inst);
-        this->vm->DeleteGlobalRef(this->cls);
-        this->inst = nullptr;
-        this->cls = nullptr;
-        this->vm = nullptr;
     }
+    
+    if (this->vm && this->cls)
+    {
+        this->vm->DeleteGlobalRef(this->cls);
+    }
+    
+    this->inst = nullptr;
+    this->cls = nullptr;
+    this->vm = nullptr;
 }
 
 JVMWeakRef<jobject> Object::ref()

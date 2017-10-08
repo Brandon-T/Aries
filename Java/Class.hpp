@@ -72,6 +72,11 @@ namespace java
             virtual ProtectionDomain getProtectionDomain();
             virtual URL getResource(String name);
             virtual InputStream getResourceAsStream(String name);
+            
+//            virtual std::vector<Object> getSigners();
+//            virtual String getSimpleName();
+//            virtual Class getSuperclass();
+//            virtual std::vector<TypeVariable> getTypeParameters();
         };
     }
 }

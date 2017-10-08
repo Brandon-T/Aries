@@ -73,13 +73,7 @@ std::vector<jbyte> ZipEntry::getExtra()
 {
     jmethodID getExtraMethod = this->vm->GetMethodID(this->cls, "getExtra", "()[B");
     jbyteArray bytes = reinterpret_cast<jbyteArray>(this->vm->CallObjectMethod(this->inst, getExtraMethod));
-    
-    std::vector<jbyte> result(this->vm->GetArrayLength(bytes));
-    
-    void* arr = this->vm->GetPrimitiveArrayCritical(bytes, nullptr);
-    memcpy(&result[0], arr, result.size() * sizeof(jbyte));
-    this->vm->ReleasePrimitiveArrayCritical(bytes, arr, 0);
-    return result;
+    return JVMArrayToVector<jbyte>(this->vm, bytes);
 }
 
 jint ZipEntry::getMethod()
