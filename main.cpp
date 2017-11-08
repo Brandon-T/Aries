@@ -1,5 +1,5 @@
 //
-//  main.cpp
+//  main.cxx
 //  Aries
 //
 //  Created by Brandon on 2017-08-25.
@@ -7,9 +7,8 @@
 //
 
 #include <iostream>
-#include <fstream>
-#include <map>
-#include "JVM.hpp"
+#include "JVM.hxx"
+#include "Map.hxx"
 
 static std::unique_ptr<JVM> jvm {nullptr};
 
@@ -25,6 +24,8 @@ int main(int argc, const char * argv[]) {
         std::cerr<<"Failed to allocated JVM\n";
         return 0;
     }
+    
+    java::util::Map<> m(jvm.get(), nullptr);
     
     return 0;
 }
