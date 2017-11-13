@@ -11,10 +11,12 @@
 
 #include "Object.hxx"
 
-namespace java::lang
+namespace java::util
 {
+    using java::lang::Object;
+    
     template<typename T = Object>
-    class Iterator : Object
+    class Iterator : public Object
     {
     public:
         Iterator(JVM* jvm, jobject instance);

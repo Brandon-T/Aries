@@ -1,5 +1,5 @@
 //
-//  Collection.cxx
+//  Collection.txx
 //  Aries
 //
 //  Created by Brandon on 2017-11-07.
@@ -12,15 +12,14 @@ using java::lang::Object;
 using java::util::Collection;
 using java::util::Iterator;
 
-
 template<typename T>
-Collection<T>::Collection(JVM* jvm, jobject instance) : Iterable<T>()
+Collection<T>::Collection(JVM* jvm, jobject instance) : Iterable<T>(nullptr)
 {
     if (jvm && instance)
     {
         this->vm = jvm;
-        this->cls = JVMRef<jobject>(this->vm, (JVMRef<jclass>(this->vm, this->vm->FindClass(("Ljava/util/Collection;"));
-        this->inst = JVMRef<jobject>(this->vm, (instance);
+        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/util/Collection;"));
+        this->inst = JVMRef<jobject>(this->vm, instance);
     }
 }
 
@@ -98,7 +97,7 @@ template<typename T>
 int Collection<T>::size()
 {
     jmethodID sizeMethod = this->vm->GetMethodID(this->cls.get(), "size", "()I");
-    return this->vm->CallIntMethod(this->vm, sizeMethod);
+    return this->vm->CallIntMethod(this->inst.get(), sizeMethod);
 }
 
 template<typename T>
@@ -112,5 +111,5 @@ template<typename T>
 Array<T> Collection<T>::toArray(Array<T> a)
 {
     jmethodID toArrayMethod = this->vm->GetMethodID(this->cls.get(), "toArray", "([Ljava/lang/Object;)[Ljava/lang/Object;");
-    return Array<Object>(this->vm, this->vm->CallObjectMethod(this->inst.get(), toArrayMethod, a.ref().get()));
+    return Array<T>(this->vm, this->vm->CallObjectMethod(this->inst.get(), toArrayMethod, a.ref().get()));
 }

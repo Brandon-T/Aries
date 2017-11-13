@@ -13,6 +13,8 @@
 
 namespace java::lang
 {
+    using java::lang::Object;
+    
     class String : public Object
     {
     private:

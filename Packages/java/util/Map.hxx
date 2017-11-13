@@ -10,6 +10,7 @@
 #define Map_hxx
 
 #include "Object.hxx"
+#include "Set.hxx"
 
 namespace java::util
 {
@@ -17,33 +18,33 @@ namespace java::util
     using java::util::Set;
     
     template<typename K = Object, typename V = Object>
-    class Map : Object
+    class Map : public Object
     {
-    private:
+    protected:
         class Entry;
         
     public:
         Map(JVM* jvm, jobject instance);
         
         
-        void clear();
-        bool containsKey(Object key);
-        bool containsValue(Object value);
+        virtual void clear();
+        virtual bool containsKey(Object key);
+        virtual bool containsValue(Object value);
         
-        Set<Map<K, V>::Entry> entrySet();
-        V get(Object key);
-        bool isEmpty();
+        virtual Set<Map<K, V>::Entry> entrySet();
+        virtual V get(Object key);
+        virtual bool isEmpty();
         
-        Set<K> keySet();
-        V put(K key, V value);
-        void putAll(Map<K, V> m);
-        V remove(Object key);
-        int size();
-        Collection<V> values();
+        virtual Set<K> keySet();
+        virtual V put(K key, V value);
+        virtual void putAll(Map<K, V> m);
+        virtual V remove(Object key);
+        virtual int size();
+        virtual Collection<V> values();
         
         
-    private:
-        class Entry : Object
+    protected:
+        class Entry : public Object
         {
         public:
             Entry(JVM* jvm, jobject instance);

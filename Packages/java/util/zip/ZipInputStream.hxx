@@ -14,9 +14,20 @@
 
 namespace java::util::zip
 {
+    using java::lang::String;
+    using java::nio::charset::Charset;
+    
     class ZipInputStream : public InflaterInputStream
     {
-        ZipInputStream(InputStream in);
+    public:
+        ZipInputStream(JVM* jvm, InputStream in);
+        ZipInputStream(JVM* jvm, InputStream in, Charset charset);
+        
+        void closeEntry();
+        ZipEntry getNextEntry();
+        
+    protected:
+        ZipEntry createZipEntry(String name);
     };
 }
 

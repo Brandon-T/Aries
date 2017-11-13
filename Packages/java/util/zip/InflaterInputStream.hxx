@@ -22,6 +22,10 @@ namespace java::util::zip
         InflaterInputStream(JVM* jvm, InputStream stream);
         InflaterInputStream(JVM* jvm, InputStream stream, Inflater inflater);
         InflaterInputStream(JVM* jvm, InputStream stream, Inflater inflater, int size);
+        
+    protected:
+        InflaterInputStream(JVM* jvm);
+        void fill();
     };
 }
 

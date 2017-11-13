@@ -11,12 +11,14 @@
 
 #include "Object.hxx"
 #include "Array.hxx"
+#include "Collection.hxx"
 
 namespace java::util
 {
     using java::lang::Object;
     using java::lang::Iterable;
     using java::util::Iterator;
+    using java::util::Collection;
     
     template<typename T>
     class Set : public Collection<T>

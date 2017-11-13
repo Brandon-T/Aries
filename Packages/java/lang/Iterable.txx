@@ -1,5 +1,5 @@
 //
-//  Iterable.cxx
+//  Iterable.txx
 //  Aries
 //
 //  Created by Brandon on 2017-08-26.
@@ -32,6 +32,6 @@ Iterable<T>::Iterable(JVM* jvm, jobject instance) : Object()
 template<typename T>
 Iterator<T> Iterable<T>::iterator()
 {
-    jmethodID iteratorMethod = this->vm->GetMethodID(this->cls.get(), "()Ljava/util/Iterator;");
+    jmethodID iteratorMethod = this->vm->GetMethodID(this->cls.get(), "iterator", "()Ljava/util/Iterator;");
     return Iterator<T>(this->vm, this->vm->CallObjectMethod(this->inst.get(), iteratorMethod));
 }

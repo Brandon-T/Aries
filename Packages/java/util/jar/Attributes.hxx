@@ -15,7 +15,7 @@ namespace java::util::jar
 {
     using java::lang::Object;
     
-    class Attributes : Object
+    class Attributes : public Object
     {
     public:
         Attributes(JVM* jvm);

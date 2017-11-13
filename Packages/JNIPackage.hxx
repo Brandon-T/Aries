@@ -19,6 +19,7 @@ namespace java::lang
     class Exception;
     class StackTraceElement;
     class Object;
+    class Comparable;
     
     template<typename T>
     class Iterable;
@@ -53,6 +54,20 @@ namespace java::io
     class ByteArrayOutputStream;
 }
 
+namespace java::nio
+{
+    class Buffer;
+    class ByteBuffer;
+    class CharBuffer;
+}
+
+namespace java::nio::charset
+{
+    class Charset;
+    class CharsetDecoder;
+    class CharsetEncoder;
+}
+
 namespace java::security
 {
     class ProtectionDomain;
@@ -66,6 +81,10 @@ namespace java::net
 namespace java::util
 {
     class List;
+    class Locale;
+    
+    template<typename T>
+    class Comparator;
     
     template<typename T>
     class Iterator;
@@ -78,6 +97,9 @@ namespace java::util
     
     template<typename K, typename V>
     class Map;
+    
+    template<typename K, typename V>
+    class SortedMap;
 }
 
 namespace java::util::zip

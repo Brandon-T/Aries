@@ -11,10 +11,12 @@
 
 #include "Object.hxx"
 #include "Array.hxx"
+#include "Iterable.hxx"
 
 namespace java::util
 {
     using java::lang::Object;
+    using java::lang::Iterable;
     using java::util::Iterator;
     
     template<typename T>

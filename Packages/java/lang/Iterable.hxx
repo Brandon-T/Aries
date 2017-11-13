@@ -10,13 +10,15 @@
 #define Iterable_hxx
 
 #include "Object.hxx"
+#include "Iterator.hxx"
 
 namespace java::lang
 {
+    using java::lang::Object;
     using java::util::Iterator;
     
     template<typename T = Object>
-    class Iterable : Object
+    class Iterable : public Object
     {
     public:
         Iterable(JVM* jvm);

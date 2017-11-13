@@ -1,5 +1,5 @@
 //
-//  Map.cxx
+//  Map.txx
 //  Aries
 //
 //  Created by Brandon on 2017-11-07.
@@ -84,7 +84,7 @@ template<typename K, typename V>
 void Map<K, V>::putAll(Map<K, V> m)
 {
     jmethodID putAllMethod = this->vm->GetMethodID(this->cls.get(), "putAll", "(Ljava/util/Map)V");
-    this->vm->CallVoidMethod(this->vm, putAllMethod, m.ref().get());
+    this->vm->CallVoidMethod(this->inst.get(), putAllMethod, m.ref().get());
 }
 
 template<typename K, typename V>

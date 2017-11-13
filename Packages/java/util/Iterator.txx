@@ -1,5 +1,5 @@
 //
-//  Iterator.cxx
+//  Iterator.txx
 //  Aries
 //
 //  Created by Brandon on 2017-11-07.
@@ -7,9 +7,9 @@
 //
 
 //#include "Iterator.hxx"
-
-using java::lang::Object;
-using java::lang::Iterator;
+//
+//using java::lang::Object;
+//using java::lang::Iterator;
 
 template<typename T>
 Iterator<T>::Iterator(JVM* jvm, jobject instance) : Object()
@@ -17,8 +17,8 @@ Iterator<T>::Iterator(JVM* jvm, jobject instance) : Object()
     if (jvm && instance)
     {
         this->vm = jvm;
-        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass(("Ljava/lang/Iterator;");
-        this->inst = JVMRef<jobject>(this->vm, (instance);
+        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/lang/Iterator;"));
+        this->inst = JVMRef<jobject>(this->vm, instance);
     }
 }
 

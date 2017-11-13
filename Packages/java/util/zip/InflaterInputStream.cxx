@@ -12,6 +12,11 @@
 
 using java::util::zip::InflaterInputStream;
 
+InflaterInputStream::InflaterInputStream(JVM* jvm) : FilterInputStream(nullptr)
+{
+    
+}
+
 InflaterInputStream::InflaterInputStream(JVM* jvm, InputStream stream) : FilterInputStream(nullptr)
 {
     if (jvm)
@@ -46,4 +51,10 @@ InflaterInputStream::InflaterInputStream(JVM* jvm, InputStream stream, Inflater 
         jmethodID constructor = this->vm->GetMethodID(this->cls.get(), "<init>", "(Ljava/io/InputStream;Ljava/util/zip/Inflater;I)V");
         this->inst = JVMRef<jobject>(this->vm, this->vm->NewObject(this->cls.get(), constructor, stream.ref().get(), inflater.ref().get(), size));
     }
+}
+
+void InflaterInputStream::fill()
+{
+    jmethodID fillMethod = this->vm->GetMethodID(this->cls.get(), "fill", "()V");
+    this->vm->CallVoidMethod(this->inst.get(), fillMethod);
 }
