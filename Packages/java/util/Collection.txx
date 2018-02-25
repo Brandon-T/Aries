@@ -11,6 +11,7 @@
 using java::lang::Object;
 using java::util::Collection;
 using java::util::Iterator;
+using java::util::Spliterator;
 
 template<typename T>
 Collection<T>::Collection(JVM* jvm, jobject instance) : Iterable<T>(nullptr)
@@ -98,6 +99,13 @@ int Collection<T>::size()
 {
     jmethodID sizeMethod = this->vm->GetMethodID(this->cls.get(), "size", "()I");
     return this->vm->CallIntMethod(this->inst.get(), sizeMethod);
+}
+
+template<typename T>
+Spliterator<T> Collection<T>::spliterator()
+{
+    static jmethodID spliteratorMethod = this->vm->GetMethodID(this->cls.get(), "spliterator", "()Ljava/util/Spliterator;");
+    return Spliterator<T>(this->vm, this->vm->CallObjectMethod(this->inst.get(), spliteratorMethod));
 }
 
 template<typename T>

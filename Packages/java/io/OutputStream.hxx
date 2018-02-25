@@ -10,23 +10,24 @@
 #define OutputStream_hxx
 
 #include "Object.hxx"
+#include "Array.hxx"
 
 namespace java::io
 {
     using java::lang::Object;
     
+    
     class OutputStream : public Object
     {
     public:
+        OutputStream(JVM* vm, jobject instance);
+        OutputStream(JVM* vm);
+        
         virtual void close();
         virtual void flush();
-        virtual void write(jbyte* buffer, int bufferLength);
-        virtual void write(jbyte* buffer, int bufferLength, int off, int len);
-        virtual void write(int b) = 0;
-        
-    protected:
-        OutputStream(JVM* jvm);
-        OutputStream(JVM* jvm, jobject instance);
+        virtual void write(std::int32_t b);
+        virtual void write(Array<std::uint8_t>& b);
+        virtual void write(Array<std::uint8_t>& b, std::int32_t off, std::int32_t len);
     };
 }
 

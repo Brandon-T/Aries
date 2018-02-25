@@ -10,11 +10,6 @@
 
 using java::io::InputStream;
 
-InputStream::InputStream(JVM* jvm) : Object()
-{
-
-}
-
 InputStream::InputStream(JVM* jvm, jobject instance) : Object()
 {
     if (jvm && instance)
@@ -22,6 +17,17 @@ InputStream::InputStream(JVM* jvm, jobject instance) : Object()
         this->vm = jvm;
         this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/lang/InputStream;"));
         this->inst = JVMRef<jobject>(this->vm, instance);
+    }
+}
+
+InputStream::InputStream(JVM* vm) : Object()
+{
+    if (vm)
+    {
+        this->vm = vm;
+        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/io/InputStream;"));
+        jmethodID constructor = this->vm->GetMethodID(this->cls.get(), "<init>", "()V");
+        this->inst = JVMRef<jobject>(this->vm, this->vm->NewObject(this->cls.get(), constructor));
     }
 }
 

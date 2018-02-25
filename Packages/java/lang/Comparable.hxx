@@ -15,7 +15,7 @@ namespace java::lang
 {
     using java::lang::Object;
     
-    class Comparable : public Object
+    class Comparable : public virtual Object
     {
     protected:
         Comparable(JVM* jvm);

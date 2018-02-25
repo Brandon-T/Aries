@@ -66,6 +66,10 @@ JVMWeakRef<jobject> Object::ref()
     return this->inst.weakRef(this->vm);
 }
 
+JVMWeakRef<jobject> Object::ref() const {
+    return this->inst.weakRef(this->vm);
+}
+
 Object* Object::clone()
 {
     jmethodID cloneMethod = this->vm->GetMethodID(this->cls.get(), "clone", "()Ljava/lang/Object;");

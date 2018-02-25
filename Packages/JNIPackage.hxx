@@ -20,6 +20,13 @@ namespace java::lang
     class StackTraceElement;
     class Object;
     class Comparable;
+    class Appendable;
+    class CharSequence;
+    class StringBuffer;
+    class StringBuilder;
+    class AbstractStringBuilder;
+    class Enum;
+    class Character;
     
     template<typename T>
     class Iterable;
@@ -50,8 +57,12 @@ namespace java::io
     class InputStream;
     class ByteArrayInputStream;
     class FilterInputStream;
+    class FilterOutputStream;
     class OutputStream;
     class ByteArrayOutputStream;
+    class File;
+    class FileFilter;
+    class FilenameFilter;
 }
 
 namespace java::nio
@@ -59,6 +70,12 @@ namespace java::nio
     class Buffer;
     class ByteBuffer;
     class CharBuffer;
+    class DoubleBuffer;
+    class FloatBuffer;
+    class IntBuffer;
+    class LongBuffer;
+    class ShortBuffer;
+    class ByteOrder;
 }
 
 namespace java::nio::charset
@@ -66,28 +83,93 @@ namespace java::nio::charset
     class Charset;
     class CharsetDecoder;
     class CharsetEncoder;
+    class CoderResult;
+    class CodingErrorAction;
+}
+
+namespace java::nio::file
+{
+    class FileSystem;
+    class LinkOption;
+    class FileStore;
+    class Path;
+    class PathMatcher;
+    class WatchEvent;
+    class WatchKey;
+    class WatchService;
+    class AccessMode;
+    class CopyOption;
+    class DirectoryStream;
+    class OpenOption;
+}
+
+namespace java::nio::file::attribute
+{
+    class UserPrincipalLookupService;
+    class FileStoreAttributeView;
+    class GroupPrincipal;
+    class UserPrincipal;
+    class BasicFileAttributes;
+    class FileAttribute;
+    class FileAttributeView;
+}
+
+namespace java::nio::file::spi
+{
+    class FileSystemProvider;
+}
+
+namespace java::nio::channels
+{
+    class AsynchronousFileChannel;
+    class FileChannel;
+    class SeekableByteChannel;
 }
 
 namespace java::security
 {
     class ProtectionDomain;
+    class Permission;
+    class PermissionCollection;
 }
 
 namespace java::net
 {
     class URL;
+    class Proxy;
+    class URI;
+    class URLConnection;
+    class URLStreamHandler;
+    class URLStreamHandlerFactory;
+    class InetAddress;
+    class SocketAddress;
+    class NetworkInterface;
+    class ContentHandlerFactory;
+    class ContentHandler;
+    class FileNameMap;
 }
 
 namespace java::util
 {
-    class List;
     class Locale;
+    
+    template<typename T>
+    class List;
+    
+    template<typename T>
+    class Enumeration;
     
     template<typename T>
     class Comparator;
     
     template<typename T>
     class Iterator;
+    
+    template<typename T>
+    class ListIterator;
+    
+    template<typename T>
+    class Spliterator;
     
     template<typename T>
     class Collection;
@@ -116,6 +198,25 @@ namespace java::util::jar
     class Manifest;
     class JarInputStream;
     class Attributes;
+}
+
+namespace java::util::stream
+{
+    class IntStream;
+}
+
+namespace java::util::function
+{
+    class IntConsumer;
+    class IntSupplier;
+    class Supplier;
+    class DoubleConsumer;
+    class DoubleSupplier;
+}
+
+namespace java::util::concurrent
+{
+    class TimeUnit;
 }
 
 #endif /* JNIPackage_hxx */

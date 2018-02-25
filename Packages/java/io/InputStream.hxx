@@ -9,28 +9,30 @@
 #ifndef InputStream_hxx
 #define InputStream_hxx
 
+#include "Array.hxx"
 #include "Object.hxx"
+
 
 namespace java::io
 {
     using java::lang::Object;
     
+    
     class InputStream : public Object
     {
     public:
-        InputStream(JVM* jvm, jobject instance);
+        InputStream(JVM* vm, jobject instance);
+        InputStream(JVM* vm);
         
-        virtual int available();
+        virtual std::int32_t available();
         virtual void close();
-        virtual void mark(int readAheadLimit);
+        virtual void mark(std::int32_t readlimit);
         virtual bool markSupported();
-        virtual int read();
-        virtual int read(jbyte* buffer, int off, int len);
+        virtual std::int32_t read();
+        virtual std::int32_t read(Array<std::uint8_t>& b);
+        virtual std::int32_t read(Array<std::uint8_t>& b, std::int32_t off, std::int32_t len);
         virtual void reset();
-        virtual long skip(long n);
-        
-    protected:
-        InputStream(JVM* jvm);
+        virtual std::int64_t skip(std::int64_t n);
     };
 }
 

@@ -12,12 +12,14 @@
 #include "Object.hxx"
 #include "Array.hxx"
 #include "Iterable.hxx"
+#include "Spliterator.hxx"
 
 namespace java::util
 {
     using java::lang::Object;
     using java::lang::Iterable;
     using java::util::Iterator;
+    using java::util::Spliterator;
     
     template<typename T>
     class Collection : public Iterable<T>
@@ -36,6 +38,7 @@ namespace java::util
         virtual bool removeAll(Collection<T> c);
         virtual bool retainAll(Collection<T> c);
         virtual int size();
+        virtual Spliterator<T> spliterator();
         virtual Array<Object> toArray();
         virtual Array<T> toArray(Array<T> a);
     };

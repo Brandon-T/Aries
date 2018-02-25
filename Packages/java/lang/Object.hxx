@@ -35,6 +35,7 @@ namespace java::lang
         virtual ~Object();
         
         JVMWeakRef<jobject> ref();
+        JVMWeakRef<jobject> ref() const;
         
         virtual bool equals(Object obj);
         virtual Class getClass() final;

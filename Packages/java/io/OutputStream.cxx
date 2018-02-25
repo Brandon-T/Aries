@@ -7,60 +7,59 @@
 //
 
 #include "OutputStream.hxx"
+#include "Object.hxx"
 
 using java::io::OutputStream;
+using java::lang::Object;
 
-OutputStream::OutputStream(JVM* jvm) : Object()
+
+OutputStream::OutputStream(JVM* vm, jobject instance) : Object()
 {
-    /*if (jvm)
+    if (vm && instance)
     {
-        this->vm = jvm;
-        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/io/OutputStream;")));
-        jmethodID defaultConstructor = this->vm->GetMethodID(this->cls.get(), "<init>", "()V");
-        this->inst = JVMRef<jobject>(this->vm, this->vm->NewObject(this->cls.get(), defaultConstructor));
-    }*/
+        this->vm = vm;
+        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/io/OutputStream;"));
+        this->inst = JVMRef<jobject>(this->vm, instance);
+    }
 }
 
-OutputStream::OutputStream(JVM* jvm, jobject instance) : Object()
+OutputStream::OutputStream(JVM* vm) : Object()
 {
-    if (jvm && instance)
+    if (vm)
     {
-        this->vm = jvm;
-        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/lang/OutputStream;"));
-        this->inst = JVMRef<jobject>(this->vm, instance);
+        this->vm = vm;
+        this->cls = JVMRef<jclass>(this->vm, this->vm->FindClass("Ljava/io/OutputStream;"));
+        jmethodID constructor = this->vm->GetMethodID(this->cls.get(), "<init>", "()V");
+        this->inst = JVMRef<jobject>(this->vm, this->vm->NewObject(this->cls.get(), constructor));
     }
 }
 
 void OutputStream::close()
 {
-    jmethodID method = this->vm->GetMethodID(this->cls.get(), "close", "()V");
-    this->vm->CallVoidMethod(this->inst.get(), method);
+    static jmethodID closeMethod = this->vm->GetMethodID(this->cls.get(), "close", "()V");
+    this->vm->CallVoidMethod(this->inst.get(), closeMethod);
 }
 
 void OutputStream::flush()
 {
-    jmethodID method = this->vm->GetMethodID(this->cls.get(), "flush", "()V");
-    this->vm->CallVoidMethod(this->inst.get(), method);
+    static jmethodID flushMethod = this->vm->GetMethodID(this->cls.get(), "flush", "()V");
+    this->vm->CallVoidMethod(this->inst.get(), flushMethod);
 }
 
-void OutputStream::write(jbyte* buffer, int bufferLength)
+void OutputStream::write(std::int32_t b)
 {
-    jbyteArray arr = this->vm->NewByteArray(bufferLength);
-    this->vm->SetByteArrayRegion(arr, 0, bufferLength, buffer);
-    jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "([b)V");
-    this->vm->CallVoidMethod(this->inst.get(), writeMethod, arr);
-}
-
-void OutputStream::write(jbyte* buffer, int bufferLength, int off, int len)
-{
-    jbyteArray arr = this->vm->NewByteArray(bufferLength);
-    this->vm->SetByteArrayRegion(arr, 0, bufferLength, buffer);
-    jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "([bIII)V");
-    this->vm->CallVoidMethod(this->inst.get(), writeMethod, arr, off, len);
-}
-
-void OutputStream::write(int b)
-{
-    jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "(I)V");
+    static jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "(I)V");
     this->vm->CallVoidMethod(this->inst.get(), writeMethod, b);
+}
+
+void OutputStream::write(Array<std::uint8_t>& b)
+{
+    static jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "([B)V");
+    this->vm->CallVoidMethod(this->inst.get(), writeMethod, b.ref().get());
+}
+
+void OutputStream::write(Array<std::uint8_t>& b, std::int32_t off, std::int32_t len)
+{
+    static jmethodID writeMethod = this->vm->GetMethodID(this->cls.get(), "write", "([BII)V");
+    this->vm->CallVoidMethod(this->inst.get(), writeMethod, b.ref().get(), off, len);
 }
